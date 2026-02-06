@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMatch - Encuentra el talento ágil perfecto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green: #1DB954;
+            --blue: #007AFF;
+            --black: #0A0A0A;
+            --white: #FFFFFF;
+            --gray: #86868b;
+            --light-gray: #f5f5f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.875rem;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .nav-cta {
+            background: var(--green);
+            color: var(--black);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 600;
+            opacity: 1 !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle at 50% 50%, rgba(29, 185, 84, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .hero .gradient-text {
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(29, 185, 84, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--blue);
+            background: rgba(0, 122, 255, 0.1);
+        }
+
+        /* Section Base */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Feature Sections */
+        .feature-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: center;
+        }
+
+        .feature-text h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+        }
+
+        .feature-text p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-visual {
+            position: relative;
+            padding: 3rem;
+        }
+
+        .visual-card {
+            background: linear-gradient(135deg, rgba(29, 185, 84, 0.1), rgba(0, 122, 255, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .visual-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Problem Section - Full Width Dark */
+        .problems-section {
+            background: var(--black);
+            padding: 12rem 2rem;
+        }
+
+        .problems-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 8rem;
+        }
+
+        .problems-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+        }
+
+        .problems-header p {
+            font-size: 1.5rem;
+            color: var(--gray);
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .problem-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .problem-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .problem-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .problem-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .problem-item p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* How It Works - Timeline Style */
+        .timeline-section {
+            padding: 12rem 2rem;
+            background: linear-gradient(180deg, var(--black) 0%, #0f0f0f 100%);
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 8rem;
+        }
+
+        .timeline-header h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .timeline-header p {
+            font-size: 1.5rem;
+            color: var(--gray);
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--green), var(--blue));
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 6rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--black);
+            top: 2rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* About Section - Full Bleed */
+        .about-section {
+            padding: 12rem 2rem;
+            background: var(--black);
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            letter-spacing: -0.03em;
+        }
+
+        .about-content p {
+            font-size: 1.5rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .about-content .highlight {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-top: 6rem;
+        }
+
+        .stat {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* CTA Section - Full Width Gradient */
+        .cta-section {
+            padding: 12rem 2rem;
+            background: linear-gradient(135deg, rgba(29, 185, 84, 0.2), rgba(0, 122, 255, 0.2));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(29, 185, 84, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0, 122, 255, 0.3) 0%, transparent 50%);
+            animation: gradientShift 10s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10%); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            letter-spacing: -0.03em;
+        }
+
+        .cta-content p {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 4rem auto 0;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: var(--white);
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--green);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-group select option {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            color: var(--black);
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(29, 185, 84, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            padding: 6rem 2rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .footer-section p {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), var(--blue));
+            z-index: 9999;
+            transition: width 0.1s linear;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 0 2rem;
+            }
+
+            .feature-content {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 100px);
+                margin-left: 100px !important;
+            }
+
+            .timeline-number {
+                left: 30px;
+                transform: none;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-indicator"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">SMatch</div>
+            <ul class="nav-links">
+                <li><a href="#problema">Problema</a></li>
+                <li><a href="#solucion">Solución</a></li>
+                <li><a href="#como-funciona">Cómo Funciona</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contacto" class="nav-cta">Empezar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Encuentra el <span class="gradient-text">talento ágil perfecto</span></h1>
+            <p>Validado con simulaciones reales, no solo CVs.</p>
+            <div class="hero-ctas">
+                <a href="#contacto" class="btn btn-primary">Publicar Posición</a>
+                <a href="#como-funciona" class="btn btn-secondary">Ver Cómo Funciona</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 1 -->
+    <section class="section">
+        <div class="container">
+            <div class="feature-section feature-content">
+                <div class="feature-text">
+                    <h2>Donde los Scrum Masters demuestran sus skills jugando</h2>
+                    <p>No más entrevistas genéricas. No más adivinar si alguien puede facilitar un sprint o resolver un conflicto de equipo.</p>
+                    <p>En SMatch, los candidatos enfrentan simulaciones reales. Los ves en acción antes de contratarlos.</p>
+                </div>
+                <div class="feature-visual">
+                    <div class="visual-card">
+                        <h3>Assessment Validado</h3>
+                        <div class="metric-row">
+                            <span class="metric-label">Facilitación</span>
+                            <span class="metric-value">95%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Resolución de Conflictos</span>
+                            <span class="metric-value">88%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Stakeholder Management</span>
+                            <span class="metric-value">92%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Agilidad Real</span>
+                            <span class="metric-value">91%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section id="problema" class="problems-section">
+        <div class="problems-header">
+            <h2>El problema con el recruiting tradicional</h2>
+            <p>Contratar talento ágil no debería ser una apuesta</p>
+        </div>
+        <div class="problems-grid">
+            <div class="problem-item">
+                <span class="problem-icon">📄</span>
+                <h3>Los CVs Mienten</h3>
+                <p>Es fácil exagerar skills en papel. Las certificaciones no garantizan performance real.</p>
+            </div>
+            <div class="problem-item">
+                <span class="problem-icon">💬</span>
+                <h3>Entrevistas Limitadas</h3>
+                <p>No revelan cómo alguien facilita, resuelve conflictos o maneja presión real.</p>
+            </div>
+            <div class="problem-item">
+                <span class="problem-icon">💸</span>
+                <h3>Contratar Mal Sale Caro</h3>
+                <p>Un mal hire puede costar 3-5x el salario anual. Sin mencionar el impacto en el equipo.</p>
+            </div>
+            <div class="problem-item">
+                <span class="problem-icon">🎯</span>
+                <h3>Más Allá de lo Teórico</h3>
+                <p>Los roles ágiles requieren evaluar desempeño real, no solo conocimiento teórico.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature 2 -->
+    <section class="section">
+        <div class="container">
+            <div class="feature-section feature-content">
+                <div class="feature-visual">
+                    <div class="visual-card">
+                        <h3>El Marketplace de Talento Ágil</h3>
+                        <div class="metric-row">
+                            <span class="metric-label">Candidatos Validados</span>
+                            <span class="metric-value">1,247</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Empresas Activas</span>
+                            <span class="metric-value">89</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Tasa de Match</span>
+                            <span class="metric-value">94%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Tiempo de Contratación</span>
+                            <span class="metric-value">-67%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-text">
+                    <h2>Dashboards que revelan la verdad</h2>
+                    <p>Métricas objetivas. Rankings claros. Videos del assessment completo.</p>
+                    <p>Comparás candidatos con data real, no con impresiones subjetivas de una entrevista de 30 minutos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Timeline -->
+    <section id="como-funciona" class="timeline-section">
+        <div class="timeline-header">
+            <h2>Cómo funciona</h2>
+            <p>Simple. Rápido. Efectivo.</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-number">1</div>
+                <div class="timeline-content">
+                    <h3>Publica tu Posición</h3>
+                    <p>Crea tu oferta en minutos. Define el perfil que buscas. Llega a candidatos validados.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">2</div>
+                <div class="timeline-content">
+                    <h3>Recibe Aplicaciones</h3>
+                    <p>Candidatos aplican. Tienes 7 días para hacer screening inicial y seleccionar quiénes avanzan.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">3</div>
+                <div class="timeline-content">
+                    <h3>Assessment Gamificado</h3>
+                    <p>Candidatos seleccionados completan simulación de 45 minutos. Facilitan ceremonies, resuelven conflictos, manejan stakeholders.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">4</div>
+                <div class="timeline-content">
+                    <h3>Dashboard + Ranking</h3>
+                    <p>Recibe métricas claras, ranking objetivo y video completo del assessment. Compara candidatos con data real.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-number">5</div>
+                <div class="timeline-content">
+                    <h3>Contrata con Confianza</h3>
+                    <p>Toma la decisión basada en desempeño real, no intuición. Reduce el riesgo. Mejora el match.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2>About SMatch</h2>
+            <p>SMatch nació de una frustración simple: las mejores habilidades de un Scrum Master no aparecen en un CV.</p>
+            <p>Después de años liderando equipos ágiles, entendimos que la única forma de identificar verdadero talento es verlo en acción.</p>
+            <p class="highlight">Por eso creamos assessments gamificados que simulan situaciones reales: facilitación de ceremonias, resolución de conflictos, manejo de stakeholders.</p>
+            <p class="highlight">No más contratar a ciegas. Bienvenido al futuro del recruiting ágil.</p>
+            
+            <div class="stats-row">
+                <div class="stat">
+                    <div class="stat-number">1K+</div>
+                    <div class="stat-label">Candidatos Validados</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">94%</div>
+                    <div class="stat-label">Tasa de Match</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Empresas Confían</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA + Contact -->
+    <section id="contacto" class="cta-section">
+        <div class="cta-content">
+            <h2>Empecemos</h2>
+            <p>¿Listo para contratar mejor talento ágil?</p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" name="empresa" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Estoy Interesado en:</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="">Seleccionar...</option>
+                        <option value="publicar">Publicar una Posición</option>
+                        <option value="demo">Agendar una Demo</option>
+                        <option value="pricing">Solicitar Pricing</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos qué necesitas..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>SMatch</h3>
+                <p>El marketplace de talento ágil con assessments que realmente importan.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Producto</h3>
+                <ul>
+                    <li><a href="#como-funciona">Cómo Funciona</a></li>
+                    <li><a href="#contacto">Pricing</a></li>
+                    <li><a href="#contacto">Demo</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Empresa</h3>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>test@smatch.com</li>
+                    <li>LinkedIn (próximamente)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SMatch. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.scroll-indicator').style.width = scrolled + '%';
+        });
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.feature-section, .problem-item, .timeline-item, .stat').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Form submitted:', data);
+            alert('¡Gracias por tu interés! Te contactaremos pronto a ' + data.email);
+            this.reset();
+        });
+
+        // Nav background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+        });
+    </script>
+</body>
+</html>
