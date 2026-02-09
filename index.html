@@ -1,5 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
+
+<!-- ============================================
+   AGREGAR AL FINAL DEL <HEAD> en index.html
+   ANTES DE </head>
+   ============================================ -->
+
+<script>
+// Theme Toggle System
+(function() {
+  // Cargar tema guardado o usar 'light' por defecto
+  const savedTheme = localStorage.getItem('smatch_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  
+  // Función para cambiar tema
+  window.toggleTheme = function() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const newTheme = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('smatch_theme', newTheme);
+    
+    // Actualizar icono del botón
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.textContent = newTheme === 'light' ? '🌙' : '☀️';
+    }
+  };
+  
+  // Al cargar, setear icono correcto
+  window.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+      btn.textContent = savedTheme === 'light' ? '🌙' : '☀️';
+    }
+  });
+})();
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +73,88 @@
             --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
+        /* ============================================
+   DARK THEME CSS VARIABLES
+   AGREGAR AL INICIO DEL <style>, DESPUÉS DE :root {}
+   ============================================ */
+
+/* Light theme (default) - ya está en tu CSS actual */
+:root {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --bg-accent: #F1F5F9;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B7280;
+  --text-light: #9CA3AF;
+  --brand-primary: #2563EB;
+  --brand-hover: #1D4ED8;
+  --brand-light: #EFF6FF;
+  --success: #10B981;
+  --success-light: #D1FAE5;
+  --warning: #F59E0B;
+  --warning-light: #FEF3C7;
+  --border: #E5E7EB;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme override */
+[data-theme="dark"] {
+  --bg-primary: #0a0e14;
+  --bg-secondary: #1a1d29;
+  --bg-accent: #252938;
+  --text-primary: #FFFFFF;
+  --text-secondary: #9CA3AF;
+  --text-light: #6B7280;
+  --brand-primary: #3B82F6;
+  --brand-hover: #60A5FA;
+  --brand-light: #1E3A8A;
+  --success: #10B981;
+  --success-light: #064E3B;
+  --warning: #F59E0B;
+  --warning-light: #78350F;
+  --border: rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 2px solid var(--border);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  box-shadow: var(--shadow-md);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(20deg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Smooth transitions for theme change */
+body,
+.navbar,
+.hero,
+.card,
+.btn,
+input,
+textarea {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -1031,6 +1150,20 @@
     </style>
 </head>
 <body>
+    <!-- ============================================
+   BOTÓN TOGGLE
+   AGREGAR JUSTO DESPUÉS DE <body>
+   ============================================ -->
+
+<button 
+  id="theme-toggle" 
+  class="theme-toggle" 
+  onclick="toggleTheme()"
+  aria-label="Toggle theme"
+  title="Cambiar tema claro/oscuro"
+>
+  🌙
+</button>
     <!-- Scroll Progress -->
     <div class="scroll-indicator"></div>
 
