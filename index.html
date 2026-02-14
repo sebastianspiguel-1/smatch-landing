@@ -41,6 +41,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMatch - Encuentra talento ágil verificado</title>
+
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         /* Reset & Base */
         * {
@@ -49,134 +55,99 @@
             box-sizing: border-box;
         }
 
-        :root {
-            /* Colors - Clean & Professional */
-            --bg-primary: #FFFFFF;
-            --bg-secondary: #F8F9FA;
-            --bg-accent: #F1F5F9;
-            
-            --text-primary: #1A1A1A;
-            --text-secondary: #6B7280;
-            --text-light: #9CA3AF;
-            
-            --brand-primary: #2563EB;
-            --brand-hover: #1D4ED8;
-            --brand-light: #EFF6FF;
-            
-            --success: #10B981;
-            --success-light: #D1FAE5;
-            --warning: #F59E0B;
-            --warning-light: #FEF3C7;
-            
-            --border: #E5E7EB;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
         /* ============================================
-   DARK THEME CSS VARIABLES
-   AGREGAR AL INICIO DEL <style>, DESPUÉS DE :root {}
-   ============================================ */
+           DARK SAAS DESIGN SYSTEM - Inspired by Linear, Vercel, Stripe
+           ============================================ */
 
-/* Light theme (default) - ya está en tu CSS actual */
-:root {
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F8F9FA;
-  --bg-accent: #F1F5F9;
-  --text-primary: #1A1A1A;
-  --text-secondary: #6B7280;
-  --text-light: #9CA3AF;
-  --brand-primary: #2563EB;
-  --brand-hover: #1D4ED8;
-  --brand-light: #EFF6FF;
-  --success: #10B981;
-  --success-light: #D1FAE5;
-  --warning: #F59E0B;
-  --warning-light: #FEF3C7;
-  --border: #E5E7EB;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
+        :root {
+            /* Typography */
+            --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
 
-/* Dark theme override */
-[data-theme="dark"] {
-  --bg-primary: #0a0e14;
-  --bg-secondary: #1a1d29;
-  --bg-accent: #252938;
-  --text-primary: #FFFFFF;
-  --text-secondary: #9CA3AF;
-  --text-light: #6B7280;
-  --brand-primary: #3B82F6;
-  --brand-hover: #60A5FA;
-  --brand-light: #1E3A8A;
-  --success: #10B981;
-  --success-light: #064E3B;
-  --warning: #F59E0B;
-  --warning-light: #78350F;
-  --border: rgba(255, 255, 255, 0.1);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
-}
+            /* Backgrounds - Deep & Rich */
+            --bg-deep: #020617;
+            --surface: #0f172a;
+            --elevated: #1e293b;
 
-/* Theme Toggle Button */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: var(--bg-secondary);
-  border: 2px solid var(--border);
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  box-shadow: var(--shadow-md);
-}
+            /* Accent & Branding */
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
 
-.theme-toggle:hover {
-  transform: scale(1.1) rotate(20deg);
-  box-shadow: var(--shadow-lg);
-}
+            /* Text Hierarchy */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
 
-/* Smooth transitions for theme change */
-body,
-.navbar,
-.hero,
-.card,
-.btn,
-input,
-textarea {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
+            /* Borders & Dividers */
+            --border-subtle: rgba(255, 255, 255, 0.08);
+
+            /* Border Radius */
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-pill: 999px;
+
+            /* Spacing */
+            --gap-bento: clamp(20px, 3vw, 40px);
+
+            /* Motion */
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+            --t: 0.3s var(--ease);
+
+            /* Shadows */
+            --shadow-card: 0 14px 50px rgba(0, 0, 0, 0.45);
+            --shadow-glow: 0 18px 60px rgba(59, 130, 246, 0.18);
+            --shadow-button: 0 18px 55px rgba(59, 130, 246, 0.20), 0 0 0 6px rgba(59, 130, 246, 0.10);
+        }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--bg-primary);
+            font-family: var(--font-sans);
+            background: var(--bg-deep);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
-        /* Navigation */
+        /* Ambient Background Glow */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(900px 450px at 20% 10%, rgba(59, 130, 246, 0.16), transparent 55%),
+                radial-gradient(700px 400px at 85% 20%, rgba(16, 185, 129, 0.10), transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glassmorphism Utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(12px);
+        }
+
+        /* Navigation - Glassmorphism */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--bg-primary);
-            border-bottom: 1px solid var(--border);
+            background: rgba(2, 6, 23, 0.72);
+            border-bottom: 1px solid var(--border-subtle);
+            backdrop-filter: blur(12px);
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all var(--t);
         }
 
         nav.scrolled {
-            box-shadow: var(--shadow-md);
+            background: rgba(2, 6, 23, 0.85);
+            box-shadow: var(--shadow-card);
         }
 
         .nav-container {
@@ -186,15 +157,18 @@ textarea {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            z-index: 1;
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-primary);
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
@@ -207,13 +181,29 @@ textarea {
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 0.95rem;
-            transition: color 0.3s;
+            transition: all var(--t);
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--brand-primary);
+            color: var(--text-primary);
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-btn-secondary)::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            transition: width var(--t);
+        }
+
+        .nav-links a:not(.nav-cta):not(.nav-btn-secondary):hover::after {
+            width: 100%;
         }
 
         .dropdown {
@@ -240,17 +230,18 @@ textarea {
             position: absolute;
             top: 100%;
             right: 0;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 0.5rem;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 0.75rem;
             margin-top: 0.5rem;
             min-width: 220px;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
-            transition: all 0.3s;
-            box-shadow: var(--shadow-lg);
+            transition: all var(--t);
+            box-shadow: var(--shadow-card);
         }
 
         .dropdown:hover .dropdown-menu {
@@ -263,42 +254,68 @@ textarea {
             display: block;
             padding: 0.8rem 1rem;
             color: var(--text-secondary);
-            border-radius: 8px;
-            transition: all 0.2s;
+            border-radius: 12px;
+            transition: all var(--t);
+            font-weight: 600;
         }
 
         .dropdown-item:hover {
-            background: var(--bg-accent);
-            color: var(--brand-primary);
+            background: rgba(59, 130, 246, 0.12);
+            color: var(--accent);
+            transform: translateX(4px);
         }
 
         .nav-cta {
-            background: var(--brand-primary);
+            background: linear-gradient(135deg, var(--accent), #2563eb);
+            background-image:
+                radial-gradient(1200px 200px at 50% 0%, rgba(255,255,255,0.20), transparent),
+                linear-gradient(135deg, var(--accent), #2563eb);
             color: white !important;
             padding: 0.7rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
+            border-radius: 16px;
+            font-weight: 800;
+            transition: all var(--t);
+            border: 1px solid rgba(59, 130, 246, 0.45);
+            box-shadow: var(--shadow-button);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+            opacity: 0;
+            transition: opacity var(--t);
         }
 
         .nav-cta:hover {
-            background: var(--brand-hover);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow:
+                0 20px 60px rgba(59, 130, 246, 0.30),
+                0 0 0 8px rgba(59, 130, 246, 0.12);
+        }
+
+        .nav-cta:hover::after {
+            opacity: 1;
         }
 
         .nav-btn-secondary {
-            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(12px);
             padding: 0.7rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
+            border-radius: 16px;
+            font-weight: 700;
+            transition: all var(--t);
         }
 
         .nav-btn-secondary:hover {
-            border-color: var(--brand-primary);
-            color: var(--brand-primary) !important;
-            background: var(--brand-light);
+            background: rgba(59, 130, 246, 0.12);
+            border-color: rgba(59, 130, 246, 0.35);
+            color: var(--accent) !important;
+            transform: translateY(-1px);
         }
 
         .mobile-menu-toggle {
@@ -341,17 +358,18 @@ textarea {
                 top: 70px;
                 left: 0;
                 right: 0;
-                background: var(--bg-primary);
+                background: rgba(2, 6, 23, 0.95);
+                backdrop-filter: blur(16px);
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 2rem;
                 gap: 1.5rem;
-                box-shadow: var(--shadow-lg);
+                box-shadow: var(--shadow-card);
                 transform: translateX(-100%);
-                transition: transform 0.3s ease;
+                transition: transform var(--t);
                 max-height: calc(100vh - 70px);
                 overflow-y: auto;
-                border-top: 1px solid var(--border);
+                border-top: 1px solid var(--border-subtle);
             }
 
             .nav-links.active {
@@ -381,9 +399,10 @@ textarea {
                 transform: none;
                 margin-top: 0.5rem;
                 box-shadow: none;
-                border: none;
-                background: var(--bg-secondary);
+                border: 1px solid var(--border-subtle);
+                background: rgba(30, 41, 59, 0.6);
                 padding: 0.5rem;
+                backdrop-filter: blur(8px);
             }
 
             .dropdown.active .dropdown-menu {
@@ -395,11 +414,11 @@ textarea {
             }
         }
 
-        /* Hero Section */
+        /* Hero Section - Premium Dark SaaS */
         .hero {
             padding: 12rem 2rem 8rem;
             text-align: center;
-            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            background: var(--bg-deep);
             margin-top: 70px;
             position: relative;
             overflow: hidden;
@@ -412,9 +431,9 @@ textarea {
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.15) 1px, transparent 0);
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.05) 1px, transparent 0);
             background-size: 100% 100%, 40px 40px;
             background-position: center, center;
             pointer-events: none;
@@ -428,8 +447,9 @@ textarea {
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 70% 20%, rgba(16, 185, 129, 0.05), transparent 40%),
-                        radial-gradient(circle at 30% 80%, rgba(37, 99, 235, 0.05), transparent 40%);
+            background:
+                radial-gradient(800px 600px at 50% 0%, rgba(59, 130, 246, 0.12), transparent 60%),
+                radial-gradient(600px 400px at 30% 80%, rgba(16, 185, 129, 0.08), transparent 50%);
             pointer-events: none;
             z-index: 0;
         }
@@ -502,24 +522,28 @@ textarea {
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(3rem, 10vw, 6rem);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: var(--text-primary);
+            letter-spacing: -0.04em;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, var(--brand-primary), var(--success));
+            background: linear-gradient(135deg, #ffffff 0%, #dbeafe 35%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            display: inline-block;
         }
 
         .hero p {
             font-size: 1.3rem;
             color: var(--text-secondary);
             margin-bottom: 3rem;
+            line-height: 1.6;
+            font-weight: 400;
         }
 
         .hero-ctas {
@@ -530,47 +554,71 @@ textarea {
         }
 
         .btn {
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
+            padding: 1.35rem 2rem;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 1.05rem;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all var(--t);
             display: inline-block;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: var(--brand-primary);
+            background:
+                radial-gradient(1200px 200px at 50% 0%, rgba(255,255,255,0.20), transparent),
+                linear-gradient(135deg, var(--accent), #2563eb);
             color: white;
-            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(59, 130, 246, 0.45);
+            box-shadow: var(--shadow-button);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+            opacity: 0;
+            transition: opacity var(--t);
         }
 
         .btn-primary:hover {
-            background: var(--brand-hover);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            box-shadow:
+                0 22px 65px rgba(59, 130, 246, 0.35),
+                0 0 0 8px rgba(59, 130, 246, 0.15);
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
         }
 
         .btn-secondary {
-            background: white;
+            background: rgba(255, 255, 255, 0.06);
             color: var(--text-primary);
-            border: 2px solid var(--border);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(12px);
         }
 
         .btn-secondary:hover {
-            border-color: var(--brand-primary);
-            color: var(--brand-primary);
-            background: var(--brand-light);
+            background: rgba(59, 130, 246, 0.12);
+            border-color: rgba(59, 130, 246, 0.35);
+            color: var(--accent);
+            transform: translateY(-2px);
         }
 
         /* Section Base */
         .section {
             padding: 6rem 2rem;
+            position: relative;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         /* Feature Section */
@@ -601,18 +649,33 @@ textarea {
         }
 
         .visual-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.04) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
             padding: 2.5rem;
-            box-shadow: var(--shadow-lg);
+            box-shadow: var(--shadow-card);
+            transition: all var(--t);
+        }
+
+        .visual-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(59, 130, 246, 0.45);
+            box-shadow:
+                var(--shadow-card),
+                var(--shadow-glow);
+            background: rgba(30, 41, 59, 0.6);
         }
 
         .visual-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.55rem;
+            font-weight: 800;
             margin-bottom: 2rem;
             color: var(--text-primary);
+            letter-spacing: -0.02em;
         }
 
         .metric-row {
@@ -640,21 +703,36 @@ textarea {
 
         /* Problems Section */
         .problems-section {
-            background: var(--bg-secondary);
+            background: var(--surface);
             padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .problems-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 600px;
+            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.08), transparent 70%);
+            pointer-events: none;
         }
 
         .problems-header {
             text-align: center;
             max-width: 800px;
             margin: 0 auto 5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .problems-header h2 {
             font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 1rem;
             color: var(--text-primary);
+            letter-spacing: -0.02em;
         }
 
         .problems-header p {
@@ -671,30 +749,39 @@ textarea {
         }
 
         .problem-item {
-            background: white;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.04) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
             padding: 2.5rem;
-            border-radius: 16px;
+            border-radius: var(--radius-xl);
             text-align: center;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
+            border: 1px solid var(--border-subtle);
+            transition: all var(--t);
+            box-shadow: var(--shadow-card);
         }
 
         .problem-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--brand-primary);
+            transform: translateY(-6px);
+            box-shadow:
+                var(--shadow-card),
+                var(--shadow-glow);
+            border-color: rgba(59, 130, 246, 0.45);
+            background: rgba(30, 41, 59, 0.6);
         }
 
         .problem-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             display: block;
+            filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.3));
         }
 
         .problem-item h3 {
             font-size: 1.3rem;
             margin-bottom: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-primary);
         }
 
@@ -703,10 +790,10 @@ textarea {
             line-height: 1.6;
         }
 
-        /* Timeline Section - Enhanced */
+        /* Timeline Section - Dark SaaS Enhanced */
         .timeline-section {
             padding: 8rem 2rem;
-            background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+            background: var(--bg-deep);
             position: relative;
             overflow: hidden;
         }
@@ -717,8 +804,8 @@ textarea {
             top: 0;
             left: 0;
             right: 0;
-            height: 400px;
-            background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.05), transparent 70%);
+            height: 600px;
+            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.12), transparent 70%);
             pointer-events: none;
         }
 
@@ -802,18 +889,25 @@ textarea {
         }
 
         .timeline-content {
-            background: white;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.04) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
             padding: 2.5rem 2.5rem 2.5rem 3rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
             position: relative;
-            transition: all 0.3s;
+            transition: all var(--t);
         }
 
         .timeline-item:hover .timeline-content {
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-            border-color: var(--brand-primary);
+            box-shadow:
+                var(--shadow-card),
+                var(--shadow-glow);
+            border-color: rgba(59, 130, 246, 0.45);
+            background: rgba(30, 41, 59, 0.6);
         }
 
         .timeline-content::before {
@@ -823,10 +917,10 @@ textarea {
             top: 0;
             width: 5px;
             height: 100%;
-            background: linear-gradient(180deg, var(--brand-primary), var(--success));
-            border-radius: 20px 0 0 20px;
+            background: linear-gradient(180deg, var(--accent), var(--success));
+            border-radius: var(--radius-xl) 0 0 var(--radius-xl);
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity var(--t);
         }
 
         .timeline-item:hover .timeline-content::before {
@@ -879,21 +973,36 @@ textarea {
 
         /* Experiences Section */
         .experiences-section {
-            background: var(--bg-secondary);
+            background: var(--surface);
             padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .experiences-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 600px;
+            background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08), transparent 70%);
+            pointer-events: none;
         }
 
         .experiences-header {
             text-align: center;
             max-width: 800px;
             margin: 0 auto 5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .experiences-header h2 {
             font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 1rem;
             color: var(--text-primary);
+            letter-spacing: -0.02em;
         }
 
         .experiences-grid {
@@ -905,16 +1014,27 @@ textarea {
         }
 
         .testimonial-card {
-            background: white;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.04) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
             padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--t);
+            box-shadow: var(--shadow-card);
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-6px);
+            box-shadow:
+                var(--shadow-card),
+                var(--shadow-glow);
+            border-color: rgba(59, 130, 246, 0.45);
+            background: rgba(30, 41, 59, 0.6);
         }
 
         .testimonial-header {
@@ -961,7 +1081,19 @@ textarea {
         /* Stats Section */
         .stats-section {
             padding: 6rem 2rem;
-            background: white;
+            background: var(--bg-deep);
+            position: relative;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.06), transparent 60%);
+            pointer-events: none;
         }
 
         .stats-row {
@@ -970,42 +1102,74 @@ textarea {
             gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .stat {
             text-align: center;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            transition: all var(--t);
+        }
+
+        .stat:hover {
+            background: rgba(59, 130, 246, 0.08);
+            transform: translateY(-4px);
         }
 
         .stat-number {
             font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--brand-primary);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent), var(--success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
         }
 
         .stat-label {
             font-size: 1rem;
             color: var(--text-secondary);
-            font-weight: 500;
+            font-weight: 600;
         }
 
         /* CTA Section */
         .cta-section {
             padding: 8rem 2rem;
-            background: linear-gradient(135deg, var(--brand-light), var(--success-light));
+            background: var(--surface);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(800px 600px at 50% 0%, rgba(59, 130, 246, 0.15), transparent 60%),
+                radial-gradient(600px 400px at 30% 100%, rgba(16, 185, 129, 0.10), transparent 50%);
+            pointer-events: none;
         }
 
         .cta-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-content h2 {
             font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 1.5rem;
             color: var(--text-primary);
+            letter-spacing: -0.02em;
         }
 
         .cta-content p {
@@ -1019,11 +1183,16 @@ textarea {
             max-width: 600px;
             margin: 4rem auto 0;
             text-align: left;
-            background: white;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 255, 255, 0.04) 0%,
+                rgba(255, 255, 255, 0.02) 100%
+            );
             padding: 3rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
-            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-subtle);
+            backdrop-filter: blur(12px);
         }
 
         .form-group {
@@ -1033,7 +1202,7 @@ textarea {
         .form-group label {
             display: block;
             margin-bottom: 0.6rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-primary);
             font-size: 0.95rem;
         }
@@ -1043,22 +1212,22 @@ textarea {
         .form-group select {
             width: 100%;
             padding: 1rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
             font-size: 1rem;
             color: var(--text-primary);
             font-family: inherit;
-            transition: all 0.3s;
+            transition: all var(--t);
         }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--brand-primary);
-            background: white;
-            box-shadow: 0 0 0 3px var(--brand-light);
+            border-color: rgba(59, 130, 246, 0.45);
+            background: rgba(59, 130, 246, 0.08);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
         }
 
         .form-group textarea {
@@ -1068,28 +1237,59 @@ textarea {
 
         .btn-submit {
             width: 100%;
-            padding: 1.2rem;
-            background: var(--brand-primary);
+            padding: 1.35rem;
+            background:
+                radial-gradient(1200px 200px at 50% 0%, rgba(255,255,255,0.20), transparent),
+                linear-gradient(135deg, var(--accent), #2563eb);
             color: white;
-            border: none;
-            border-radius: 8px;
+            border: 1px solid rgba(59, 130, 246, 0.45);
+            border-radius: 16px;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 800;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all var(--t);
+            box-shadow: var(--shadow-button);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+            opacity: 0;
+            transition: opacity var(--t);
         }
 
         .btn-submit:hover {
-            background: var(--brand-hover);
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            box-shadow:
+                0 22px 65px rgba(59, 130, 246, 0.35),
+                0 0 0 8px rgba(59, 130, 246, 0.15);
+        }
+
+        .btn-submit:hover::before {
+            opacity: 1;
         }
 
         /* Footer */
         footer {
-            background: var(--bg-secondary);
+            background: var(--bg-deep);
             padding: 4rem 2rem 2rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--border-subtle);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            background: radial-gradient(circle at 50% 0%, rgba(59, 130, 246, 0.06), transparent 60%);
+            pointer-events: none;
         }
 
         .footer-content {
@@ -1099,13 +1299,16 @@ textarea {
             grid-template-columns: 2fr repeat(3, 1fr);
             gap: 3rem;
             margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-section h3 {
             margin-bottom: 1.2rem;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 800;
             color: var(--text-primary);
+            letter-spacing: -0.01em;
         }
 
         .footer-section p {
@@ -1125,22 +1328,27 @@ textarea {
         .footer-section a {
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all var(--t);
             font-size: 0.95rem;
+            font-weight: 500;
         }
 
         .footer-section a:hover {
-            color: var(--brand-primary);
+            color: var(--accent);
+            transform: translateX(2px);
+            display: inline-block;
         }
 
         .footer-bottom {
             max-width: 1400px;
             margin: 0 auto;
             padding-top: 2rem;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid var(--border-subtle);
             text-align: center;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* Scroll Progress */
@@ -1150,9 +1358,10 @@ textarea {
             left: 0;
             width: 0%;
             height: 3px;
-            background: linear-gradient(90deg, var(--brand-primary), var(--success));
+            background: linear-gradient(90deg, var(--accent), var(--success));
             z-index: 9999;
             transition: width 0.1s linear;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
         }
 
         /* Login Modal */
@@ -1163,8 +1372,8 @@ textarea {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(12px);
             z-index: 9999;
             align-items: center;
             justify-content: center;
@@ -1181,22 +1390,24 @@ textarea {
         }
 
         .login-modal-content {
-            background: white;
-            border-radius: 24px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
             padding: 3rem;
             max-width: 450px;
             width: 90%;
             position: relative;
             animation: slideUp 0.3s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-card);
         }
 
         @keyframes slideUp {
-            from { 
+            from {
                 opacity: 0;
                 transform: translateY(30px);
             }
-            to { 
+            to {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -1206,14 +1417,14 @@ textarea {
             position: absolute;
             top: 1.5rem;
             right: 1.5rem;
-            background: var(--bg-secondary);
-            border: none;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-subtle);
             width: 40px;
             height: 40px;
             border-radius: 50%;
             font-size: 1.5rem;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all var(--t);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1221,7 +1432,9 @@ textarea {
         }
 
         .login-modal-close:hover {
-            background: var(--border);
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: var(--danger);
             transform: rotate(90deg);
         }
 
@@ -1234,6 +1447,8 @@ textarea {
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         .login-header p {
@@ -1251,17 +1466,46 @@ textarea {
 
         .login-hint {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             margin-top: 1.5rem;
-            padding: 1rem;
-            background: var(--warning-light);
-            border-radius: 8px;
-            border-left: 4px solid var(--warning);
+            padding: 0.95rem;
+            background: rgba(245, 158, 11, 0.12);
+            border-radius: 12px;
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            font-weight: 600;
         }
 
         .login-hint strong {
             color: var(--warning);
+            font-weight: 800;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.42rem 0.95rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all var(--t);
+        }
+
+        .badge-available {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+
+        .badge-available:hover {
+            background: rgba(16, 185, 129, 0.18);
+            transform: translateY(-1px);
+        }
+
+        .badge-locked {
+            background: rgba(100, 116, 139, 0.14);
+            color: var(--text-muted);
+            border: 1px solid rgba(148, 163, 184, 0.20);
         }
 
         /* Responsive */
@@ -1462,7 +1706,7 @@ textarea {
             <div class="problem-item">
                 <span class="problem-icon">💸</span>
                 <h3>Contratar Mal Sale Caro</h3>
-                <p>Un mal hire puede costar 3-5x el salario anual. Sin mencionar el impacto en el equipo.</p>
+                <p>Un mal hire puede costar 3-5x el salario anual, con un alto riesgo de destruir al equipo</p>
             </div>
             
         </div>
@@ -1510,58 +1754,53 @@ textarea {
         </div>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-number">1</div>
+                <div class="timeline-number">📝</div>
                 <div class="timeline-content">
                     <div class="timeline-content-header">
-                        <div class="timeline-icon">📝</div>
-                        <h3>Publica tu Posición</h3>
+                        <div class="timeline-icon"></div>
+                        <h3>Level 1: Publish</h3>
                     </div>
-                    <p>Crea tu oferta en minutos. Define el perfil que buscas. Llega a candidatos validados.</p>
-                    <span class="timeline-highlight">⚡ 5 minutos para publicar</span>
+                    <p>Publica tu Posición. Crea tu oferta en minutos y define el perfil que buscas.</p>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-number">2</div>
+                <div class="timeline-number">📬</div>
                 <div class="timeline-content">
                     <div class="timeline-content-header">
-                        <div class="timeline-icon">📬</div>
-                        <h3>Recibe Aplicaciones</h3>
+                        <div class="timeline-icon"></div>
+                        <h3>Level 2: Screen</h3>
                     </div>
-                    <p>Candidatos aplican. Tienes 7 días para hacer screening inicial y seleccionar quiénes avanzan.</p>
-                    <span class="timeline-highlight">✅ Control total del proceso</span>
+                    <p>Candidatos aplican. Una vez terminado el screening inicial, se procede a enviar los assessments.</p>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-number">3</div>
+                <div class="timeline-number">🎮</div>
                 <div class="timeline-content">
                     <div class="timeline-content-header">
-                        <div class="timeline-icon">🎮</div>
+                        <div class="timeline-icon"></div>
                         <h3>Assessment Gamificado</h3>
                     </div>
-                    <p>Candidatos seleccionados completan simulación de 45 minutos. Facilitan ceremonies, resuelven conflictos, manejan stakeholders.</p>
-                    <span class="timeline-highlight">🎯 Skills reales, no teoría</span>
+                    <p>Simulación de 60 minutos. Evaluacion de impacto real en equipos con diferentes escenarios.</p>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-number">4</div>
+                <div class="timeline-number">📊</div>
                 <div class="timeline-content">
                     <div class="timeline-content-header">
-                        <div class="timeline-icon">📊</div>
-                        <h3>Dashboard + Ranking</h3>
+                        <div class="timeline-icon"></div>
+                        <h3>Scoreboard</h3>
                     </div>
                     <p>Recibe métricas claras, ranking objetivo y video completo del assessment. Compara candidatos con data real.</p>
-                    <span class="timeline-highlight">📈 Datos objetivos</span>
                 </div>
             </div>
             <div class="timeline-item">
-                <div class="timeline-number">5</div>
+                <div class="timeline-number">💡</div>
                 <div class="timeline-content">
                     <div class="timeline-content-header">
-                        <div class="timeline-icon">🎉</div>
-                        <h3>Contrata con Confianza</h3>
+                        <div class="timeline-icon"></div>
+                        <h3>Hire</h3>
                     </div>
-                    <p>Toma la decisión basada en desempeño real, no intuición. Reduce el riesgo. Mejora el match.</p>
-                    <span class="timeline-highlight">✨ 94% tasa de éxito</span>
+                    <p>Toma la decisión basada en datos y necesidades reales del producto. Disminuyendo riesgo, tiempos y errores de contratacion, mientras mejoramos perfiles y % de satisfaccion del cliente. </p>
                 </div>
             </div>
         </div>
